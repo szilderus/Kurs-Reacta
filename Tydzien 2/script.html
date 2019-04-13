@@ -7,6 +7,8 @@
     <title>Kurs Reacta - Tydzień 2</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <style>
@@ -22,39 +24,46 @@
         margin-bottom: 10px;
         }
 
-        input{
-            min-width: 60%;
-            margin-left: 20px;
-            font-size: 16px;
-        }
-        button{
-            font-size: 16px;
-            margin-left: 10px;
-        }
-        .Timebox{
-            border: 2px solid #000;
-            font-size: 16px;
-            padding: 20px;
-            text-align: center;
-        }
-        .Clock{
-            color: orangered;
-        }
-        .ProgressBar{
-            border: 1px solid #000;
-            border-radius: 5px;
-            height: 25px;
-            margin-bottom: 20px;
-            padding: 5px;
-        }
-        .ProgressBar > div{
-            height: 100%;
-            background-color:orangered;
-        }
+    input{
+        min-width: 60%;
+        margin-left: 20px;
+        font-size: 16px;
+    }
+    button{
+        font-size: 16px;
+        margin-left: 10px;
+    }
+    .Timebox{
+        border: 2px solid #000;
+        font-size: 16px;
+        padding: 20px;
+        text-align: center;
+    }
+    .Clock{
+        color: orangered;
+    }
+    .ProgressBar{
+        border: 1px solid #000;
+        border-radius: 5px;
+        height: 25px;
+        margin-bottom: 20px;
+        padding: 5px;
+       
+        display: flex;
+        justify-content:flex-end;
+        
+    }
+    .ProgressBar > div{
+        height: 100%;
+        background-color:orangered;
+        width: 70%;
+      
+    }
 
-        .inactive {
-            filter: blur(2px) grayscale(1)
-        }
+    
+    .inactive {
+        filter: blur(2px) grayscale(1)
+    }
 
 </style>
 
@@ -72,30 +81,34 @@
             <h1>Uczę się skrótów klawiszowych</h1>
 
             <div id="root"></div>
+
+
             <div class="ProgressBar">
-                <div style="width: 45%"></div>
+                <div></div>
             </div>
             <button>Start</button>
             <button>Stop</button>
-            <button>Pauzuj</button>
+            <button>Pauzuj</button>`
+        
             Liczba przerw: 2
         </div>
     </div>
 </body>
 
-<script type="text/javascript">
+<script type="text/babel">
+
+
+    function Clock( { minutes = 20, seconds = 0 }){
+        return <h2 className="Clock">             
+            Pozostało { minutes < 10 ? "0" + minutes : minutes }:
+            { seconds < 10 ? "0" + seconds : seconds } 
+        
+        </h2>
+    } 
+
     const rootElement = document.getElementById("root");
 
-    const domElement = document.createElement("h2");
-    domElement.className ="Clock";
-    domElement.textContent ="Pozostało 10:20";
-
-    const element = React.createElement(
-        "h2",
-        {className: "Clock"},
-        "Pozostało 10:20"
-    );
-
+    const element = (<Clock minutes="7" seconds ="8" />);
     ReactDOM.render(element, rootElement);
 
 </script>
