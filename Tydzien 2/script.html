@@ -98,9 +98,10 @@
 <script type="text/babel">
 
 
-    function Clock( { minutes = 20, seconds = 0 }){
+    function Clock( { hours = 0, minutes = 20, seconds = 0 }){
         return <h2 className="Clock">             
-            Pozostało { minutes < 10 ? "0" + minutes : minutes }:
+            Pozostało { hours < 10 ? "0" + hours : hours}:
+            { minutes < 10 ? "0" + minutes : minutes }:
             { seconds < 10 ? "0" + seconds : seconds } 
         
         </h2>
