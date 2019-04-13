@@ -99,6 +99,12 @@
 
 
     function Clock( { hours = 0, minutes = 20, seconds = 0, miliseconds = 0}){
+
+        hours = Math.abs(hours);
+        minutes = Math.abs(minutes);
+        seconds = Math.abs(seconds);
+        miliseconds = Math.abs(miliseconds);
+
         return <h2 className="Clock">             
             Pozostało { hours < 10 ? "0" + hours : hours}:
             { minutes < 10 ? "0" + minutes : minutes }:
@@ -109,7 +115,7 @@
 
     const rootElement = document.getElementById("root");
 
-    const element = (<Clock minutes="7" seconds ="8" miliseconds = "1" />);
+    const element = (<Clock minutes="-7" seconds ="-8" miliseconds = "-1" />);
     ReactDOM.render(element, rootElement);
 
 </script>
