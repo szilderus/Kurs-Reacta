@@ -98,18 +98,18 @@
 <script type="text/babel">
 
 
-    function Clock( { hours = 0, minutes = 20, seconds = 0 }){
+    function Clock( { hours = 0, minutes = 20, seconds = 0, miliseconds = 0}){
         return <h2 className="Clock">             
             Pozostało { hours < 10 ? "0" + hours : hours}:
             { minutes < 10 ? "0" + minutes : minutes }:
-            { seconds < 10 ? "0" + seconds : seconds } 
-        
+            { seconds < 10 ? "0" + seconds : seconds }: 
+            { miliseconds < 10 ? "00" + miliseconds:  ( miliseconds < 100 ? "0" + miliseconds : miliseconds ) }
         </h2>
     } 
 
     const rootElement = document.getElementById("root");
 
-    const element = (<Clock minutes="7" seconds ="8" />);
+    const element = (<Clock minutes="7" seconds ="8" miliseconds = "1" />);
     ReactDOM.render(element, rootElement);
 
 </script>
