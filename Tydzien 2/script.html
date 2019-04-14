@@ -14,15 +14,15 @@
 <style>
     .App{
         font-family: sans-serif;
-
     }
+
     .TimeboxEditor {
         text-align: right;
         border: 2px solid #000;
         border-radius: 5px;
         padding: 20px;
         margin-bottom: 10px;
-        }
+    }
 
     input{
         min-width: 60%;
@@ -47,19 +47,14 @@
         border-radius: 5px;
         height: 25px;
         margin-bottom: 20px;
-        padding: 5px;
-       
-        display: flex;
-        justify-content:flex-end;
-        
+        padding: 5px;       
+        /* display: flex;
+        justify-content:flex-end; */        
     }
     .ProgressBar > div{
         height: 100%;
-        background-color:orangered;
-        width: 70%;
-      
+        background-color:orangered;      
     }
-
     
     .inactive {
         filter: blur(2px) grayscale(1)
@@ -82,10 +77,6 @@
 
             <div id="root"></div>
 
-
-            <div class="ProgressBar">
-                <div></div>
-            </div>
             <button>Start</button>
             <button>Stop</button>
             <button>Pauzuj</button>`
@@ -113,10 +104,45 @@
         </h2>
     } 
 
+
+    function ProgressBar({percent = 7, trackRemaining = false })
+    {
+        console.log(trackRemaining);
+
+        var styles = {
+            width: `${percent}%`
+        };
+
+
+        var progressBarBackwards = {
+            display: 'flex',
+            justifyContent: 'flex-end'
+        };
+      
+        var stylesBackwards = {
+            width: `${100 - percent}%`
+        };
+
+        // var trackRemaining 
+        if(trackRemaining)
+        {
+            return <div className="ProgressBar" style={progressBarBackwards}>
+                <div style= { stylesBackwards }></div>
+            </div>
+        }
+        else
+        {
+            return <div className="ProgressBar">
+                <div style= { styles }></div>
+            </div>
+        }
+        
+    }
+
     const rootElement = document.getElementById("root");
 
-    const element = (<Clock hours="-59" minutes="-59" seconds ="-59" miliseconds = "111" />);
-    ReactDOM.render(element, rootElement);
+    ReactDOM.render( <div><ProgressBar percent="20" trackRemaining="true"/><Clock hours="-59" minutes="-59" seconds ="-59" miliseconds = "111" /> </div>, rootElement);
+    //  ReactDOM.render(<ProgressBar percent="59" />, rootElement);
 
 </script>
 </html>
