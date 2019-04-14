@@ -125,18 +125,31 @@
         
     }
 
-    function Timebox(){
-        return <div className="Timebox">
-            <h1>Uczę się skrótów klawiszowych</h1>        
+    class Timebox extends React.Component {
 
-            <Clock hours="-59" minutes="-59" seconds ="-59" miliseconds = "111" />  
-            <ProgressBar percent="20" trackRemaining="true"/> 
+        constructor(props)
+        {
+            super(props);
+            this.state = {
+                isRunning: true,
+                isPaused: false,
+                pausesCount: 0
+            }
+        }
 
-            <button>Start</button>
-            <button>Stop</button>
-            <button>Pauzuj</button>`        
-            Liczba przerw: 2
-        </div>
+        render(){
+            return (<div className="Timebox">
+                    <h1>Uczę się skrótów klawiszowych</h1>        
+
+                    <Clock hours="-59" minutes="-59" seconds ="-59" miliseconds = "111" />  
+                    <ProgressBar percent="20" trackRemaining="true"/> 
+
+                    <button>Start</button>
+                    <button>Stop</button>
+                    <button>Pauzuj</button>`        
+                    Liczba przerw: 2
+            </div>)
+        }    
     }
 
     function TimeboxEditor(){
@@ -144,12 +157,11 @@
                 <label>Co robisz? <input value="Uczę się skrótów klawiszowych" type="text" /></label><br />
                 <label>Ile minut? <input value="25" type="number" /></label><br />
                 <button>Zacznij</button>
-            </div>
-        
+            </div>        
     }
 
     function App(){
-        return   <div class="App">
+        return   <div className="App">
             <TimeboxEditor />
             <Timebox /> 
         </div>
