@@ -138,16 +138,17 @@
         }
 
         render(){
+            const { isPaused, isRunning, pausesCount } = this.state;
             return (<div className="Timebox">
                     <h1>Uczę się skrótów klawiszowych</h1>        
 
                     <Clock hours="-59" minutes="-59" seconds ="-59" miliseconds = "111" />  
                     <ProgressBar percent="20" trackRemaining="true"/> 
 
-                    <button>Start</button>
-                    <button>Stop</button>
-                    <button>Pauzuj</button>`        
-                    Liczba przerw: 2
+                    <button disabled={isRunning}>Start</button>
+                    <button disabled={!isRunning}>Stop</button>
+                    <button disabled={!isRunning} >{isPaused? "Wznów": "Pauzuj" }</button>`        
+                    Liczba przerw: {pausesCount}
             </div>)
         }    
     }
@@ -166,7 +167,6 @@
             <Timebox /> 
         </div>
     }
-  
 
     const rootElement = document.getElementById("root");
 
