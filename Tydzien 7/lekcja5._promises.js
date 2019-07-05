@@ -44,6 +44,22 @@ function slowIsEven(num, ms=1000){
 // obietnica zostanie dotrzymana i otrzymać jej wartość. Chyba, że upłynie zadany czas w milisekundach, 
 // to obietnica ma być odrzucona. Wykorzystaj do implementacji funkcję delayedError
 
+function timeout(promise, ms=3000){
+    return new Promise( (resolve, reject) => {
+
+        
+        if(promise.status === "resolved")
+        {
+            resolve(promise.value)
+        }
+        else{
+            setTimeout(()=> {
+                reject(promise);
+            });            
+        }
+    });
+}
+
 // Przykład do punktu 5
 // timeout(slowIsEven(5, 1000), 3000) // ma dotrzymać obietnicy z wartością false po sekundzie
 // timeout(slowIsEven(5, 4000), 2000) // ma odrzucić obietnicę po dwóch sekundach
